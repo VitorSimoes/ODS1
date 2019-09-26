@@ -11,8 +11,4 @@
 |
 */
 
-use Illuminate\Support\Facades\DB;
-
-Route::get('/', function () {
-    return DB::table('recomends')->get();
-});
+Route::get('/', 'RecomendController@index')->name('index');
