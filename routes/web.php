@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'RecomendController@index')->name('index');
+Route::get('/search','RecomendController@search')->name('search');
+
+//Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');
