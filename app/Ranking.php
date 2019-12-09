@@ -2,43 +2,29 @@
 
 namespace App;
 
-use http\Exception\InvalidArgumentException;
 use Illuminate\Database\Eloquent\Model;
 
-class Recomend extends Model
+class Ranking extends Model
 {
-    protected $fillable = ['id', 'genery', 'hobby', 'travel', 'drink', 'id_product'];
+    protected $fillable = ['id', 'fragancy', 'teor', 'price', 'id_product', 'id_user'];
 
-    public function product()
-    {
-        return $this->hasOne(Product::class);
-    }
 
-    /**
-     * Calculates eucilean distances for an array dataset
-     *
-     * @param array $sourceCoords In format array(x, y)
-     * @param array $sourceKey Associated array key
-     * @param array $data
-     * @return array Of distances to the rest of the data set
-     */
     function euclideanDistance(&$sourceCoords, $sourceKey, $data)
     {
-        $x1 = $sourceCoords->genery;
-        $y1 = $sourceCoords->hobby;
-        $w1 = $sourceCoords->travel;
-        $z1 = $sourceCoords->drink;
+        $x1 = $sourceCoords->fragancy;
+        $y1 = $sourceCoords->teor;
+        $w1 = $sourceCoords->price;
         $distances = array();
         foreach ($data as $destinationKey => $destinationCoords) {
             // Same point, ignore
             if ($sourceKey === $destinationKey) {
                 continue;
             }
-            $x2 = $destinationCoords->genery;
-            $y2 = $destinationCoords->hobby;
-            $w2 = $destinationCoords->travel;
-            $z2 = $destinationCoords->drink;
-            $distances[$destinationKey] = sqrt(pow($x1 - $x2, 2) + pow($y1 - $y2, 2) + pow($w1 - $w2, 2) + pow($z1 - $z2, 2));
+            $x2 = $destinationCoords->fragancy;
+            $y2 = $destinationCoords->teor;
+            $w2 = $destinationCoords->price;
+
+            $distances[$destinationKey] = sqrt(pow($x1 - $x2, 2) + pow($y1 - $y2, 2) + pow($w1 - $w2, 2));
         }
         asort($distances);
         return $distances;
@@ -84,10 +70,9 @@ class Recomend extends Model
         $results = array();
 //        $neighbors = array_keys($neighbors);
         foreach ($neighbors as $key => $neighbor) {
+            dd($key);
             $results[] = $this->find($key)->product;
         }
         return $results;
     }
-
-
 }

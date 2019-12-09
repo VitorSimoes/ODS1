@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Resultado</div>
                     <div class="card-body">
-                        {{$resultado}}
+                        {{$resultado }}
                         @if($resultado == "Boticario Boticollection")
                             <img src="{!! asset('img/boticollection.jpg') !!}">
                             @elseif($resultado == "batom_liquido_mate_quemdisseberenice")
