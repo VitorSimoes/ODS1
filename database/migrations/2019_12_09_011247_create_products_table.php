@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecomendsTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateRecomendsTable extends Migration
      */
     public function up()
     {
-        Schema::create('recomends', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('genery');
-            $table->integer('hobby');
-            $table->integer('travel');
-            $table->integer('drink');
-            $table->unsignedBigInteger('id_product');
+            $table->string('name');
+            $table->integer('type');
+            $table->integer('price');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +29,6 @@ class CreateRecomendsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recomends');
+        Schema::dropIfExists('products');
     }
 }

@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recomend extends Model
 {
-    protected $fillable = ['id', 'genery', 'hobby', 'travel', 'drink', 'product'];
+    protected $fillable = ['id', 'genery', 'hobby', 'travel', 'drink', 'id_product'];
+
+    public function product()
+    {
+        return $this->hasOne(Product::class);
+    }
 
     /**
      * Calculates eucilean distances for an array dataset
