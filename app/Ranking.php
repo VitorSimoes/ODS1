@@ -8,6 +8,10 @@ class Ranking extends Model
 {
     protected $fillable = ['id', 'fragancy', 'teor', 'price', 'id_product', 'id_user'];
 
+    public function product()
+    {
+        return $this->hasOne(Product::class,'id','id_product');
+    }
 
     function euclideanDistance(&$sourceCoords, $sourceKey, $data)
     {
@@ -57,7 +61,7 @@ class Ranking extends Model
 //        $results = array();
 //        $neighbors = array_keys($neighbors);
         foreach ($neighbors as $key => $neighbor) {
-            $results[] = $this->find($key)->product;
+            $results[] = $this->find($key)->product->name;
         }
         $values = array_count_values($results);
         $values = array_flip($values);
@@ -70,8 +74,7 @@ class Ranking extends Model
         $results = array();
 //        $neighbors = array_keys($neighbors);
         foreach ($neighbors as $key => $neighbor) {
-            dd($key);
-            $results[] = $this->find($key)->product;
+            $results[] = $this->find($key)->product->name;
         }
         return $results;
     }

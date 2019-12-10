@@ -11,7 +11,7 @@ class Recomend extends Model
 
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->hasOne(Product::class,'id','id_product');
     }
 
     /**
@@ -71,11 +71,15 @@ class Recomend extends Model
 //        $results = array();
 //        $neighbors = array_keys($neighbors);
         foreach ($neighbors as $key => $neighbor) {
-            $results[] = $this->find($key)->product;
+            $results[] = $this->find($key)->product->name;
         }
+
         $values = array_count_values($results);
+
         $values = array_flip($values);
+
         ksort($values);
+
         return array_pop($values);
     }
 
@@ -84,7 +88,7 @@ class Recomend extends Model
         $results = array();
 //        $neighbors = array_keys($neighbors);
         foreach ($neighbors as $key => $neighbor) {
-            $results[] = $this->find($key)->product;
+            $results[] = $this->find($key)->product->name;
         }
         return $results;
     }

@@ -13,11 +13,11 @@ class RecomendController extends Controller
         return view('welcome');
     }
 
-    public function search(Recomend $recomend,Ranking $ranking, Request $request)
+    public function search(Recomend $recomend, Ranking $ranking, Request $request)
     {
 
         $dataset = Recomend::select('genery', 'hobby', 'travel', 'drink', 'id_product')->get();
-        $dataset2= Ranking::select('fragancy','teor','price','id_product','id_user')->get();
+        $dataset2 = Ranking::select('fragancy', 'teor', 'price', 'id_product', 'id_user')->get();
 
 
         $algo2 = new Ranking();
@@ -37,26 +37,44 @@ class RecomendController extends Controller
 //        array_walk($distances, 'euclideanDistance', $data);
         $distances = $recomend->euclideanDistance($algo, 'euclideanDistance', $dataset);
 
-        $distancescont=$ranking->euclideanDistance($algo2,'euclideanDistance',$dataset2);
+        $distancescont = $ranking->euclideanDistance($algo2, 'euclideanDistance', $dataset2);
 
         $algo = array($distances);
         $algo2 = array($distancescont);
 //        dd($algo);
 
 // Example, target = datapoint 5, getting 3 nearest neighbors
+
         $neighbors = $recomend->getNearestNeighbors($algo, 0, 5);
         $neighbors2 = $ranking->getNearestNeighbors($algo2, 0, 5);
 //        dd($neighbors);
+        $neighbors3 = $neighbors + $neighbors2;
+
+
         unset($neighbors[0]);
         unset($neighbors2[0]);
-//        dd($neighbors);
-//        $resultado = $recomend->getLabel($neighbors);
-//        dd($resultado);
+        unset($neighbors3[0]);
+//        dd($neighbors3);
+
+//        dd($neighbors2);
+        $resultado = $recomend->getLabel($neighbors);
+        $resultado2 = $ranking->getLabel($neighbors2);
+        $resultado3 = $recomend->getLabel($neighbors3);
+//        dd($resultado3);
 //        dd('oi');
         $vizinhos = $recomend->getVizinhos($neighbors);
         $vizinhos2 = $ranking->getVizinhos($neighbors2);
-//        dd($vizinhos);
-        return view('home', ['vizinhos2' => $vizinhos2, 'vizinhos' => $vizinhos]);
+        $vizinhos3 = $recomend->getVizinhos($neighbors3);
+        dd($vizinhos2);
+//        return view('home', ['resultado' => $resultado, 'resultado2' => $resultado2]);
+        return view('home', [
+            'resultado' => $resultado,
+            'resultado2' => $resultado2,
+            'resultado3' => $resultado3,
+            'vizinhos2' => $vizinhos2,
+            'vizinhos3' => $vizinhos3,
+            'vizinhos' => $vizinhos,
+        ]);
 
     }
 
