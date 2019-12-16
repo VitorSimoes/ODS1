@@ -23,7 +23,7 @@
                         @elseif($resultado  == "malbec_boticario")
                             <img class="img" src="{!! asset('img/malbec.jpg') !!}">
                         @elseif($resultado  == "nativaspa_boticario")
-                            <img class="img" src="{!! asset('img/spa.jpg') !!}">
+                            <img class="img" src="{!! asset('img/spa.jpeg') !!}">
                         @endif
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="card-header">Filtragem Baseada em Conteúdo</div>
                     <div class="card-body">
                         {{$resultado2}}
-                        @if($resultado2  == "Boticario Boticollection")
+                        @if($resultado2  == "boticollection_boticario")
                             <img class="img" src="{!! asset('img/boticollection.jpg') !!}">
                         @elseif($resultado2  == "batom_liquido_mate_quemdisseberenice")
                             <img class="img" src="{!! asset('img/batomliquidoquemdisseberenice.jpg') !!}">
@@ -59,7 +59,7 @@
                         @elseif($resultado2  == "malbec_boticario")
                             <img class="img" src="{!! asset('img/malbec.jpg') !!}">
                         @elseif($resultado2  == "nativaspa_boticario")
-                            <img class="img" src="{!! asset('img/spa.jpg') !!}">
+                            <img class="img" src="{!! asset('img/spa.jpeg') !!}">
                         @endif
                     </div>
                 </div>
@@ -80,8 +80,8 @@
                 <div class="card">
                     <div class="card-header">Filtragem Híbrida</div>
                     <div class="card-body">
-                        {{$resultado3}}
-                        @if($resultado3  == "Boticario Boticollection")
+                        {{$resultado3  }}
+                        @if($resultado3  == "boticollection_boticario")
                             <img class="img" src="{!! asset('img/boticollection.jpg') !!}">
                         @elseif($resultado3  == "batom_liquido_mate_quemdisseberenice")
                             <img class="img" src="{!! asset('img/batomliquidoquemdisseberenice.jpg') !!}">
@@ -96,7 +96,7 @@
                         @elseif($resultado3  == "malbec_boticario")
                             <img class="img" src="{!! asset('img/malbec.jpg') !!}">
                         @elseif($resultado3  == "nativaspa_boticario")
-                            <img class="img" src="{!! asset('img/spa.jpg') !!}">
+                            <img class="img" src="{!! asset('img/spa.jpeg') !!}">
                         @endif
                     </div>
                 </div>

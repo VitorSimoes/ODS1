@@ -63,10 +63,12 @@ class Ranking extends Model
         foreach ($neighbors as $key => $neighbor) {
             $results[] = $this->find($key)->product->name;
         }
+//        dd($results);
         $values = array_count_values($results);
+//        dd($values);
         $values = array_flip($values);
         ksort($values);
-        return array_pop($values);
+        return $values;
     }
 
     public function getVizinhos($neighbors)

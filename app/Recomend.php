@@ -67,20 +67,21 @@ class Recomend extends Model
      */
     public function getLabel($neighbors)
     {
-//        dd($neighbors);
+
 //        $results = array();
 //        $neighbors = array_keys($neighbors);
         foreach ($neighbors as $key => $neighbor) {
             $results[] = $this->find($key)->product->name;
         }
-
+//        dd($neighbors);
+//        dd($results);
         $values = array_count_values($results);
-
+//        dd($values);
         $values = array_flip($values);
-
+//        dd($values);
         ksort($values);
-
-        return array_pop($values);
+//        dd($values);
+        return $values;
     }
 
     public function getVizinhos($neighbors)

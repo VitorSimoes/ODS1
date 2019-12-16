@@ -24,7 +24,7 @@ class RecomendController extends Controller
         $algo2->fragancy = $request->fragancy;
         $algo2->teor = $request->teor;
         $algo2->price = $request->price;
-
+//        dd($algo2);
 
         $algo = new Recomend();
         $algo->genery = $request->genery;
@@ -41,35 +41,35 @@ class RecomendController extends Controller
 
         $algo = array($distances);
         $algo2 = array($distancescont);
-//        dd($algo);
+//        dd($algo2);
 
 // Example, target = datapoint 5, getting 3 nearest neighbors
 
         $neighbors = $recomend->getNearestNeighbors($algo, 0, 5);
         $neighbors2 = $ranking->getNearestNeighbors($algo2, 0, 5);
-//        dd($neighbors);
-        $neighbors3 = $neighbors + $neighbors2;
-
 
         unset($neighbors[0]);
         unset($neighbors2[0]);
-        unset($neighbors3[0]);
-//        dd($neighbors3);
 
-//        dd($neighbors2);
         $resultado = $recomend->getLabel($neighbors);
         $resultado2 = $ranking->getLabel($neighbors2);
-        $resultado3 = $recomend->getLabel($neighbors3);
-//        dd($resultado3);
-//        dd('oi');
+
         $vizinhos = $recomend->getVizinhos($neighbors);
         $vizinhos2 = $ranking->getVizinhos($neighbors2);
-        $vizinhos3 = $recomend->getVizinhos($neighbors3);
-        dd($vizinhos2);
+        $vizinhos3 = $vizinhos;
+        foreach ($vizinhos2 as $vz){
+            array_push($vizinhos3,$vz);
+        }
+
+        $values = array_count_values($vizinhos3);
+//        dd($values);
+        $values = array_flip($values);
+        ksort($values);
+        $resultado3=array_pop($values);
 //        return view('home', ['resultado' => $resultado, 'resultado2' => $resultado2]);
         return view('home', [
-            'resultado' => $resultado,
-            'resultado2' => $resultado2,
+            'resultado' => array_pop($resultado),
+            'resultado2' => array_pop($resultado2),
             'resultado3' => $resultado3,
             'vizinhos2' => $vizinhos2,
             'vizinhos3' => $vizinhos3,

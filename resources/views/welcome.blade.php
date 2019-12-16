@@ -64,7 +64,7 @@
                                 <label>Teor Alcóolico</label>
                                 <div>
                                     <label>0%</label>
-                                    <input name="fragancy" type="range" min="1" max="5">
+                                    <input name="teor" type="range" min="1" max="5">
                                     <label>100%</label>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                 <label>Preço</label>
                                 <div>
                                     <label>$</label>
-                                    <input name="fragancy" type="range" min="1" max="5">
+                                    <input name="price" type="range" min="1" max="5">
                                     <label>$$$$$</label>
                                 </div>
                             </div>
